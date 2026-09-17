@@ -1,0 +1,598 @@
+# Git from Scratch: A Beginner’s Guide
+
+Git is a version-control system. It records changes to files so you can:
+
+- Save different versions of your work
+- Undo mistakes
+- Work on features safely
+- Collaborate with others
+- Upload projects to GitHub
+
+---
+
+## 1. Install Git
+
+Download Git from:
+
+<https://git-scm.com/downloads>
+
+Check that it is installed:
+
+```bash
+git --version
+```
+
+You should see something like:
+
+```text
+git version 2.x.x
+```
+
+---
+
+## 2. Configure Git
+
+Set your name and email. These appear in your commits.
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+Check your configuration:
+
+```bash
+git config --global --list
+```
+
+---
+
+## 3. Important Git Concepts
+
+### Repository
+
+A project tracked by Git.
+
+### Working directory
+
+The files you are currently editing.
+
+### Staging area
+
+A preparation area where you choose which changes will be included in the next commit.
+
+### Commit
+
+A saved snapshot of your project.
+
+### Branch
+
+An independent line of development.
+
+### Remote
+
+A copy of your repository hosted elsewhere, commonly on GitHub.
+
+The basic flow is:
+
+```text
+Edit files → Stage changes → Commit changes → Push to GitHub
+```
+
+---
+
+# 4. Create Your First Git Repository
+
+Create a project folder:
+
+```bash
+mkdir my-project
+cd my-project
+```
+
+Initialize Git:
+
+```bash
+git init
+```
+
+Git creates a hidden `.git` folder containing the repository history.
+
+Check the status:
+
+```bash
+git status
+```
+
+Create a file:
+
+```bash
+echo "# My Project" > README.md
+```
+
+Check the status again:
+
+```bash
+git status
+```
+
+Git should report that `README.md` is an untracked file.
+
+---
+
+## 5. Stage and Commit Changes
+
+Stage one file:
+
+```bash
+git add README.md
+```
+
+Or stage all changed files:
+
+```bash
+git add .
+```
+
+Check the staged changes:
+
+```bash
+git status
+```
+
+Create a commit:
+
+```bash
+git commit -m "Add project README"
+```
+
+A commit message should explain what changed.
+
+Good examples:
+
+```bash
+git commit -m "Add login form"
+git commit -m "Fix validation error"
+git commit -m "Update installation instructions"
+```
+
+Avoid vague messages such as:
+
+```bash
+git commit -m "Changes"
+```
+
+---
+
+# 6. View Project History
+
+Show commits:
+
+```bash
+git log
+```
+
+A shorter version:
+
+```bash
+git log --oneline
+```
+
+Show the current differences:
+
+```bash
+git diff
+```
+
+Show staged differences:
+
+```bash
+git diff --staged
+```
+
+---
+
+# 7. The Basic Daily Workflow
+
+After modifying files, use:
+
+```bash
+git status
+git add .
+git commit -m "Describe your changes"
+```
+
+For example:
+
+```bash
+git status
+git add index.html styles.css
+git commit -m "Add homepage styling"
+```
+
+You do not need to commit after every keystroke. Commit after completing a small, meaningful piece of work.
+
+---
+
+# 8. Create a `.gitignore` File
+
+Some files should not be committed, such as:
+
+- Passwords and API keys
+- Build output
+- Operating-system files
+- Dependency folders
+- Log files
+
+Create a file named `.gitignore`:
+
+```gitignore
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+```
+
+Then commit it:
+
+```bash
+git add .gitignore
+git commit -m "Add gitignore file"
+```
+
+Never commit passwords, private keys, or secret API tokens.
+
+---
+
+# 9. Branches
+
+Branches let you work on features without changing the main project.
+
+List branches:
+
+```bash
+git branch
+```
+
+Create a branch:
+
+```bash
+git branch feature-login
+```
+
+Switch to it:
+
+```bash
+git switch feature-login
+```
+
+Create and switch in one command:
+
+```bash
+git switch -c feature-login
+```
+
+Make changes and commit them:
+
+```bash
+git add .
+git commit -m "Add login feature"
+```
+
+Switch back to the main branch:
+
+```bash
+git switch main
+```
+
+Your default branch might be called `master` instead of `main`.
+
+---
+
+## 10. Merge a Branch
+
+Suppose you completed work on `feature-login`.
+
+Switch to the main branch:
+
+```bash
+git switch main
+```
+
+Merge the feature:
+
+```bash
+git merge feature-login
+```
+
+If there are no conflicts, Git combines the changes.
+
+You can delete the completed branch:
+
+```bash
+git branch -d feature-login
+```
+
+---
+
+## 11. Handle Merge Conflicts
+
+A conflict happens when Git cannot automatically combine changes.
+
+Git marks the conflicting file like this:
+
+```text
+<<<<<<< HEAD
+Content from the current branch
+=======
+Content from the other branch
+>>>>>>> feature-login
+```
+
+Edit the file and keep the correct content. Remove the conflict markers:
+
+```text
+<<<<<<<
+=======
+>>>>>>>
+```
+
+Then stage and commit the resolution:
+
+```bash
+git add conflicted-file.txt
+git commit -m "Resolve merge conflict"
+```
+
+---
+
+# 12. Use GitHub as a Remote
+
+Create an empty repository on GitHub, then connect your local project to it.
+
+```bash
+git remote add origin https://github.com/USERNAME/REPOSITORY.git
+```
+
+Check the remote:
+
+```bash
+git remote -v
+```
+
+Rename your current branch to `main` if necessary:
+
+```bash
+git branch -M main
+```
+
+Upload your code:
+
+```bash
+git push -u origin main
+```
+
+The `-u` option remembers the connection. Later, you can simply use:
+
+```bash
+git push
+```
+
+---
+
+## 13. Download an Existing Repository
+
+To copy a GitHub repository to your computer:
+
+```bash
+git clone https://github.com/USERNAME/REPOSITORY.git
+```
+
+Enter the project directory:
+
+```bash
+cd REPOSITORY
+```
+
+View remote branches and information:
+
+```bash
+git remote -v
+```
+
+---
+
+## 14. Fetch and Pull Changes
+
+Download information about remote changes:
+
+```bash
+git fetch
+```
+
+Download and integrate changes:
+
+```bash
+git pull
+```
+
+A common collaboration workflow is:
+
+```bash
+git pull
+git switch -c my-feature
+# edit files
+git add .
+git commit -m "Implement my feature"
+git push -u origin my-feature
+```
+
+You can then open a pull request on GitHub.
+
+---
+
+# 15. Undo Changes
+
+## Undo edits to an unstaged file
+
+This discards local changes to a file:
+
+```bash
+git restore filename.txt
+```
+
+Be careful: the changes may be lost.
+
+## Unstage a file
+
+If you ran `git add` but have not committed:
+
+```bash
+git restore --staged filename.txt
+```
+
+The file remains changed, but it is removed from the staging area.
+
+## Amend the last commit
+
+If you forgot to include a file:
+
+```bash
+git add forgotten-file.txt
+git commit --amend --no-edit
+```
+
+Change the last commit message:
+
+```bash
+git commit --amend -m "Correct commit message"
+```
+
+Avoid amending commits that have already been shared with others.
+
+## Undo a published commit safely
+
+Create a new commit that reverses an earlier commit:
+
+```bash
+git revert COMMIT_ID
+```
+
+Find the commit ID with:
+
+```bash
+git log --oneline
+```
+
+---
+
+# 16. Useful Commands
+
+| Command | Purpose |
+|---|---|
+| `git init` | Create a repository |
+| `git clone URL` | Download a repository |
+| `git status` | Show current changes |
+| `git add FILE` | Stage a file |
+| `git add .` | Stage all changes |
+| `git commit -m "message"` | Save a snapshot |
+| `git log` | View history |
+| `git diff` | View unstaged changes |
+| `git branch` | List branches |
+| `git switch BRANCH` | Change branches |
+| `git switch -c NAME` | Create and switch branches |
+| `git merge BRANCH` | Merge a branch |
+| `git pull` | Download and integrate changes |
+| `git push` | Upload commits |
+| `git fetch` | Download remote information |
+| `git remote -v` | Show remote repositories |
+| `git restore FILE` | Discard unstaged changes |
+
+---
+
+# 17. A Complete Example
+
+```bash
+mkdir blog
+cd blog
+
+git init
+
+echo "# My Blog" > README.md
+
+git add README.md
+git commit -m "Create blog project"
+
+git switch -c add-about-page
+
+echo "## About" >> README.md
+
+git add README.md
+git commit -m "Add about page"
+
+git switch main
+git merge add-about-page
+
+git log --oneline
+```
+
+---
+
+# 18. Recommended Learning Exercise
+
+Practice this workflow:
+
+1. Create a folder called `git-practice`.
+2. Run `git init`.
+3. Create `README.md`.
+4. Commit it.
+5. Create a branch called `feature`.
+6. Add another file.
+7. Commit the file.
+8. Switch to `main`.
+9. Merge `feature`.
+10. Create a GitHub repository.
+11. Push your project.
+12. Clone it into another folder.
+13. Make another change and push it.
+
+---
+
+# 19. What to Learn Next
+
+After the basics, learn:
+
+1. Git branches and merging
+2. Pull requests
+3. Merge conflict resolution
+4. `.gitignore`
+5. SSH authentication for GitHub
+6. Rebasing
+7. Tags and releases
+8. GitHub Actions
+9. Commit best practices
+10. Recovering lost commits with `git reflog`
+
+The most important commands to remember are:
+
+```bash
+git status
+git add .
+git commit -m "message"
+git pull
+git push
+git switch -c branch-name
+```
+
+A good rule is: **check `git status` frequently, make small commits, and never commit secrets.**
