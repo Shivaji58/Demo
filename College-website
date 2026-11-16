@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon Institute of Technology & Sciences</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0f2c59;
+            --secondary: #1e4b8f;
+            --accent: #eab308;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+
+        /* Top Announcement Bar */
+        .top-bar {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 8px 5%;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+
+        /* Navigation */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            background: var(--primary);
+            color: var(--accent);
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            color: var(--gray);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .btn-apply {
+            background-color: var(--accent);
+            color: var(--primary) !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 700 !important;
+            transition: transform 0.2s, background-color 0.3s !important;
+        }
+
+        .btn-apply:hover {
+            background-color: #ca8a04;
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 44, 89, 0.85), rgba(15, 44, 89, 0.75)),
+                        url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #ffffff;
+            padding: 110px 5%;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(234, 179, 8, 0.2);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-outline {
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #ca8a04;
+        }
+
+        .btn-outline {
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+
+        .btn-outline:hover {
+            background-color: #ffffff;
+            color: var(--primary);
+        }
+
+        /* Stats Strip */
+        .stats-container {
+            max-width: 1200px;
+            margin: -45px auto 0;
+            padding: 0 5%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .stat-item {
+            border-right: 1px solid #e2e8f0;
+            padding: 10px;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-item h3 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Common Section Styles */
+        section {
+            padding: 80px 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header span {
+            color: var(--secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-top: 8px;
+        }
+
+        /* Programs Section */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 8px 20px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 25px;
+        }
+
+        .program-card {
+            background: var(--light);
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 28px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+        }
+
+        .program-tag {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .program-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .program-card p {
+            color: var(--gray);
+            font-size: 0.92rem;
+            margin-bottom: 20px;
+        }
+
+        .program-meta {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+            font-size: 0.85rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Campus & News Split Section */
+        .bg-light {
+            background-color: var(--light);
+            max-width: 100%;
+        }
+
+        .inner-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .campus-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .feature-box {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-box h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .feature-box p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .notice-board {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 28px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--accent);
+        }
+
+        .notice-board h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .notice-item {
+            display: flex;
+            gap: 15px;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .notice-date {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            min-width: 65px;
+            height: fit-content;
+        }
+
+        .notice-date span {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .notice-date small {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .notice-info h4 {
+            font-size: 0.98rem;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .notice-info p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* Admission Form Section */
+        .admission-wrapper {
+            background: var(--primary);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .admission-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .admission-text p {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .admission-list {
+            list-style: none;
+        }
+
+        .admission-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admission-list li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .inquiry-form {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            color: var(--dark);
+        }
+
+        .inquiry-form h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-submit:hover {
+            background: var(--primary);
+        }
+
+        #formFeedback {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #15803d;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #091b36;
+            color: #cbd5e1;
+            padding: 60px 5% 25px;
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 25px auto 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .stat-item:nth-child(2) {
+                border-right: none;
+            }
+            .split-grid, .admission-wrapper, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background: #ffffff;
+                padding: 20px;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .campus-features {
+                grid-template-columns: 1fr;
+            }
+            .admission-wrapper {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <span>Admissions Open for Academic Year 2026–2027</span>
+        <div>
+            <a href="#admissions">Student Portal</a>
+            <a href="#notices">Exam Results</a>
+            <a href="#contact">Contact Desk</a>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <div class="logo-icon">HI</div>
+                <div class="logo-text">
+                    <h1>Horizon Institute</h1>
+                    <span>Of Technology & Sciences</span>
+                </div>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#programs">Academics</a></li>
+                <li><a href="#campus">Campus Life</a></li>
+                <li><a href="#notices">Announcements</a></li>
+                <li><a href="#admissions" class="btn-apply">Apply Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-badge">NAAC 'A+' Accredited Institution</span>
+            <h2>Shaping Future Innovators & Global Leaders</h2>
+            <p>Empowering students through cutting-edge research, industry-integrated engineering programs, and a vibrant collaborative campus environment.</p>
+            <div class="hero-buttons">
+                <a href="#programs" class="btn-primary">Explore Programs</a>
+                <a href="#admissions" class="btn-outline">Request Brochure</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Statistics -->
+    <div class="stats-container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>96%</h3>
+                <p>Campus Placement Rate</p>
+            </div>
+            <div class="stat-item">
+                <h3>45+</h3>
+                <p>Undergraduate & PG Courses</p>
+            </div>
+            <div class="stat-item">
+                <h3>120+</h3>
+                <p>Research Labs & Centers</p>
+            </div>
+            <div class="stat-item">
+                <h3>15,000+</h3>
+                <p>Global Alumni Network</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Academic Programs Section -->
+    <section id="programs">
+        <div class="section-header">
+            <span>Academic Excellence</span>
+            <h2>Programs & Departments</h2>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="tab-btn active" data-filter="all">All Programs</button>
+            <button class="tab-btn" data-filter="ug">Undergraduate (B.E. / B.Tech)</button>
+            <button class="tab-btn" data-filter="pg">Postgraduate (M.Tech / MBA)</button>
+        </div>
+
+        <div class="programs-grid" id="programsGrid">
+            <div class="program-card" data-category="ug">
+                <div>
+                    <span class="program-tag">Undergraduate</span>
+                    <h3>AI & Data Science</h3>
+                    <p>Master machine learning, neural networks, big data analytics, and intelligent systems with hands-on industry projects.</p>
+                </div>
+                <div class="program-meta">
+                    <span>Duration: 4 Years</span>
+                    <span>Seats: 120</span>
+                </div>
+            </div>
+
+            <div class="program-card" data-category="ug">
+                <div>
+                    <span class="program-tag">Undergraduate</span>
+                    <h3>Computer Science & Engg.</h3>
+                    <p>Build deep expertise in algorithms, cloud computing, cybersecurity, and full-stack software architecture.</p>
+                </div>
+                <div class="program-meta">
+                    <span>Duration: 4 Years</span>
+                    <span>Seats: 180</span>
+                </div>
+            </div>
+
+            <div class="program-card" data-category="ug">
+                <div>
+                    <span class="program-tag">Undergraduate</span>
+                    <h3>Electronics & Communication</h3>
+                    <p>Explore VLSI design, embedded systems, IoT hardware, and next-generation wireless communication networks.</p>
+                </div>
+                <div class="program-meta">
+                    <span>Duration: 4 Years</span>
+                    <span>Seats: 120</span>
+                </div>
+            </div>
+
+            <div class="program-card" data-category="pg">
+                <div>
+                    <span class="program-tag">Postgraduate</span>
+                    <h3>M.Tech in Data Engineering</h3>
+                    <p>Advanced research-driven curriculum focused on scalable data pipelines, deep learning, and enterprise AI.</p>
+                </div>
+                <div class="program-meta">
+                    <span>Duration: 2 Years</span>
+                    <span>Seats: 30</span>
+                </div>
+            </div>
+
+            <div class="program-card" data-category="pg">
+                <div>
+                    <span class="program-tag">Postgraduate</span>
+                    <h3>Master of Business Admin.</h3>
+                    <p>Develop strategic leadership, financial acumen, and entrepreneurship skills tailored for technology-driven enterprises.</p>
+                </div>
+                <div class="program-meta">
+                    <span>Duration: 2 Years</span>
+                    <span>Seats: 60</span>
+                </div>
+            </div>
+
+            <div class="program-card" data-category="ug">
+                <div>
+                    <span class="program-tag">Undergraduate</span>
+                    <h3>Robotics & Automation</h3>
+                    <p>Design autonomous systems, industrial robotics, and smart manufacturing solutions in dedicated lab facilities.</p>
+                </div>
+                <div class="program-meta">
+                    <span>Duration: 4 Years</span>
+                    <span>Seats: 60</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Life & Notice Board -->
+    <div class="bg-light" id="campus">
+        <section class="inner-container">
+            <div class="split-grid">
+                <div>
+                    <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+                        <span>Life at Horizon</span>
+                        <h2>World-Class Campus Infrastructure</h2>
+                    </div>
+                    <div class="campus-features">
+                        <div class="feature-box">
+                            <h4>Central Digital Library</h4>
+                            <p>24/7 access to over 85,000 volumes, IEEE journals, and high-speed research workstations.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Innovation & Incubation</h4>
+                            <p>Seed funding and mentorship hub supporting student-led startups and patent filings.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Sports & Wellness Complex</h4>
+                            <p>Indoor badminton courts, athletics track, yoga studio, and fitness center.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Residential Hostels</h4>
+                            <p>Modern, secure on-campus housing with high-speed Wi-Fi and nutritious dining halls.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notice Board -->
+                <div class="notice-board" id="notices">
+                    <h3>Latest Announcements</h3>
+                    <div class="notice-item">
+                        <div class="notice-date">
+                            <span>22</span>
+                            <small>Nov</small>
+                        </div>
+                        <div class="notice-info">
+                            <h4>Odd Semester Practical Exam Timetable</h4>
+                            <p>Lab examination schedules for 3rd and 5th semester B.E. students are now live.</p>
+                        </div>
+                    </div>
+                    <div class="notice-item">
+                        <div class="notice-date">
+                            <span>05</span>
+                            <small>Dec</small>
+                        </div>
+                        <div class="notice-info">
+                            <h4>Annual TechFest 'Technova 2026'</h4>
+                            <p>Registrations open for the 24-hour national hackathon and robotics championship.</p>
+                        </div>
+                    </div>
+                    <div class="notice-item">
+                        <div class="notice-date">
+                            <span>14</span>
+                            <small>Dec</small>
+                        </div>
+                        <div class="notice-info">
+                            <h4>Merit Scholarship Applications</h4>
+                            <p>Eligible students can submit income and academic certificates at the admin block.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Admissions Inquiry Section -->
+    <section id="admissions">
+        <div class="admission-wrapper">
+            <div class="admission-text">
+                <h2>Begin Your Academic Journey With Us</h2>
+                <p>Applications are invited for undergraduate, lateral entry, and postgraduate programs. Connect with our admissions counselors for eligibility and scholarship guidance.</p>
+                <ul class="admission-list">
+                    <li>Merit & Need-Based Financial Scholarships Available</li>
+                    <li>Direct Lateral Entry Support for Diploma Graduates</li>
+                    <li>Dedicated Placement & Career Training Cell</li>
+                    <li>International Student Exchange Partnerships</li>
+                </ul>
+            </div>
+
+            <div class="inquiry-form">
+                <h3>Admissions Inquiry Form</h3>
+                <form id="admissionForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+91 98765 43210" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Program of Interest</label>
+                        <select id="course" required>
+                            <option value="">-- Select a Program --</option>
+                            <option value="AI & Data Science">B.E. Artificial Intelligence & Data Science</option>
+                            <option value="Computer Science">B.E. Computer Science & Engineering</option>
+                            <option value="Electronics">B.E. Electronics & Communication</option>
+                            <option value="Robotics">B.E. Robotics & Automation</option>
+                            <option value="MTech">M.Tech Data Engineering</option>
+                            <option value="MBA">Master of Business Administration</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="form-submit">Submit Inquiry</button>
+                    <p id="formFeedback">Thank you! Our admissions counselor will contact you shortly.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Horizon Institute</h4>
+                <p>Committed to academic rigor, ethical values, and technological innovation since 1998.</p>
+                <p><strong>Campus Address:</strong><br>Knowledge Park, Ring Road, Mysuru - 570019, Karnataka</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">About Institute</a></li>
+                    <li><a href="#programs">Academic Calendar</a></li>
+                    <li><a href="#campus">Research & Patents</a></li>
+                    <li><a href="#admissions">Fee Structure</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Student Corner</h4>
+                <ul>
+                    <li><a href="#notices">Examination Cell</a></li>
+                    <li><a href="#campus">Digital Library</a></li>
+                    <li><a href="#campus">Anti-Ragging Committee</a></li>
+                    <li><a href="#admissions">Placement Statistics</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>Admissions Helpline:<br>+91 (821) 245-6789</p>
+                <p>Email:<br>admissions@horizoninstitute.edu.in</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Horizon Institute of Technology & Sciences. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Program Category Filter
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const programCards = document.querySelectorAll('.program-card');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                programCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Admissions Form Submission Handler
+        const admissionForm = document.getElementById('admissionForm');
+        const formFeedback = document.getElementById('formFeedback');
+
+        admissionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('fullName').value;
+            const course = document.getElementById('course').value;
+            
+            formFeedback.textContent = `Thank you, ${name}! Your inquiry for ${course} has been received.`;
+            formFeedback.style.display = 'block';
+            admissionForm.reset();
+        });
+    </script>
+</body>
+</html>
